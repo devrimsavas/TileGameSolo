@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veni Vidi Memory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=EB+Garamond:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      data-goatcounter="https://devrimthegoat.goatcounter.com/count"
+      async
+      src="//gc.zgo.at/count.js"
+    ></script>
+  </head>
+  <body>
+    <div class="menu">
+      <button id="btnNew">New Game</button>
+      <button id="btnRules">Rules</button>
+      <button id="btnAbout">About</button>
+    </div>
+
+    <div class="table" id="table">
+      <div class="board" id="board"></div>
+      <div class="panel">
+        <div class="hero" id="hero0"></div>
+        <div class="stats" id="stats0"></div>
+        <div class="center">
+          <div class="turn" id="turn"></div>
+          <div class="log" id="log"></div>
+        </div>
+        <div class="stats right" id="stats1"></div>
+        <div class="hero" id="hero1"></div>
+      </div>
+    </div>
+
+    <div class="intro" id="intro">
+      <button class="start" id="btnStart">START GAME</button>
+      <div class="scroller"><div class="text" id="introText"></div></div>
+      <div class="hint">A strategic memory game for two kingdoms</div>
+    </div>
+
+    <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
