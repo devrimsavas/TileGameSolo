@@ -1,16 +1,7 @@
 // Everything that touches the page: board, panel, animations, sounds and windows.
 
-import { ITEMS, POWER_TEXTS, INTRO_TEXT } from "./data.js";
-import {
-  TILE_FOLDER,
-  TILE_EXTENSION,
-  BACK_IMAGE,
-  SOUND_FILES,
-  COLUMNS,
-  ROWS,
-  FLY_MS,
-  PAIR_COUNT,
-} from "./config.js";
+import { ITEMS, POWER_TEXTS } from "./data.js";
+import { TILE_FOLDER, TILE_EXTENSION, BACK_IMAGE, SOUND_FILES, COLUMNS, ROWS, FLY_MS, PAIR_COUNT } from "./config.js";
 import { loadBest } from "./records.js";
 import { pretty, signed, formatTime } from "./utils.js";
 
@@ -36,18 +27,13 @@ function picture(src, label, className = "") {
 function sound(file) {
   const audio = new Audio(file);
   return {
-    play() {
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    }, // Missing files stay silent
-    stop() {
-      audio.pause();
-    },
+    play() { audio.currentTime = 0; audio.play().catch(() => {}); },  // Missing files stay silent
+    stop() { audio.pause(); },
   };
 }
 
-const CARD_RATIO = 1.4; // Card height / width; must match --ch in style.css
-const PHONE_COLUMNS = 6; // 6 x 6 board on a phone held upright
+const CARD_RATIO = 1.4;          // Card height / width; must match --ch in style.css
+const PHONE_COLUMNS = 6;         // 6 x 6 board on a phone held upright
 
 // Phones can report a wider window while the page is still too wide, so never trust more than the screen
 const screenWidth = () => Math.min(innerWidth, screen.width);
@@ -71,8 +57,7 @@ export function fitToWindow() {
   } else {
     byWidth = (innerWidth - 60 - (columns - 1) * gap) / (columns + 0.3);
     // Board rows + panel (about 1.75 card widths) + margins
-    byHeight =
-      (innerHeight - 70 - (rows - 1) * gap) / (rows * CARD_RATIO + 0.3 + 1.75);
+    byHeight = (innerHeight - 70 - (rows - 1) * gap) / (rows * CARD_RATIO + 0.3 + 1.75);
   }
 
   const cardWidth = Math.max(36, Math.min(150, byWidth, byHeight));
@@ -84,39 +69,23 @@ export function fitToWindow() {
 
 export class View {
   constructor() {
-    this.sounds = Object.fromEntries(
-      Object.entries(SOUND_FILES).map(([key, file]) => [key, sound(file)]),
-    );
-    this.cardElements = new Map(); // card object -> its element on the board
+    this.sounds = Object.fromEntries(Object.entries(SOUND_FILES).map(([key, file]) => [key, sound(file)]));
+    this.cardElements = new Map();   // card object -> its element on the board
 
-    $("modal").addEventListener("click", (event) => {
-      if (event.target.id === "modal") this.closeModal();
-    });
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") this.closeModal();
-    });
+    $("modal").addEventListener("click", (event) => { if (event.target.id === "modal") this.closeModal(); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") this.closeModal(); });
   }
 
-  playSound(name) {
-    this.sounds[name]?.play();
-  }
+  playSound(name) { this.sounds[name]?.play(); }
 
   // ---------- Intro ----------
 
   showIntro() {
     const intro = $("intro");
-    $("introText").textContent = INTRO_TEXT;
-    intro.addEventListener("pointerdown", () => this.playSound("intro"), {
-      once: true,
-    });
     $("btnStart").onclick = (event) => {
       event.stopPropagation();
-      this.sounds.intro.stop();
-      intro
-        .animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500 })
-        .finished.then(() => {
-          intro.style.display = "none";
-        });
+      intro.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500 }).finished
+        .then(() => { intro.style.display = "none"; });
     };
   }
 
@@ -130,8 +99,7 @@ export class View {
     for (const card of game.cards) {
       const el = document.createElement("div");
       el.className = "card";
-      el.innerHTML =
-        '<div class="inner"><div class="face back"></div><div class="face front"></div></div>';
+      el.innerHTML = '<div class="inner"><div class="face back"></div><div class="face front"></div></div>';
       el.querySelector(".back").append(picture(BACK_IMAGE, "VENI VIDI"));
       el.addEventListener("click", () => game.clickCard(card));
       this.cardElements.set(card, el);
@@ -171,8 +139,7 @@ export class View {
     this.updateClock(game);
 
     if (game.over) $("turn").textContent = "Victory!";
-    else if (game.startTime === null)
-      $("turn").textContent = "Turn over a card to start the clock";
+    else if (game.startTime === null) $("turn").textContent = "Turn over a card to start the clock";
     else $("turn").textContent = `${PAIR_COUNT - p.pairs.length} pairs to go`;
   }
 
@@ -193,18 +160,16 @@ export class View {
 
   showBest() {
     const best = loadBest();
-    $("best").textContent = best
-      ? `${formatTime(best.time)} (${best.moves} moves)`
-      : "none yet";
+    $("best").textContent = best ? `${formatTime(best.time)} (${best.moves} moves)` : "none yet";
   }
+
 
   /** Show what just happened in the middle of the bottom panel. */
   showEvent(event) {
     let html;
     switch (event.type) {
       case "start":
-        html =
-          "Find all the pairs as fast as you can. Every pair strengthens your kingdom.";
+        html = "Find all the pairs as fast as you can. Every pair strengthens your kingdom.";
         break;
       case "take": {
         const [a, d, h, description] = ITEMS[event.name];
@@ -217,13 +182,12 @@ export class View {
 
     const log = $("log");
     log.innerHTML = "";
-    if (event.name)
-      log.append(picture(tilePath(event.name), pretty(event.name), "thumb"));
+    if (event.name) log.append(picture(tilePath(event.name), pretty(event.name), "thumb"));
     const text = document.createElement("div");
     text.innerHTML = html;
     log.append(text);
     log.classList.remove("flash");
-    void log.offsetWidth; // Restart the flash animation
+    void log.offsetWidth;  // Restart the flash animation
     log.classList.add("flash");
   }
 
@@ -237,19 +201,12 @@ export class View {
   async flyToHero(card, playerIndex) {
     const el = this.cardElements.get(card);
     const from = el.getBoundingClientRect();
-    const to = $(`hero${playerIndex}`)
-      .querySelector(".portrait")
-      .getBoundingClientRect();
+    const to = $(`hero${playerIndex}`).querySelector(".portrait").getBoundingClientRect();
 
     const ghost = el.cloneNode(true);
     Object.assign(ghost.style, {
-      position: "fixed",
-      left: `${from.left}px`,
-      top: `${from.top}px`,
-      width: `${from.width}px`,
-      height: `${from.height}px`,
-      zIndex: 25,
-      pointerEvents: "none",
+      position: "fixed", left: `${from.left}px`, top: `${from.top}px`,
+      width: `${from.width}px`, height: `${from.height}px`, zIndex: 25, pointerEvents: "none",
     });
     document.body.append(ghost);
     el.classList.add("taken");
@@ -257,35 +214,18 @@ export class View {
     const dx = to.left + to.width / 2 - (from.left + from.width / 2);
     const dy = to.top + to.height / 2 - (from.top + from.height / 2);
     const tilt = dx > 0 ? 6 : -6;
-    await ghost.animate(
-      [
-        { transform: "translate(0, 0) scale(1) rotate(0deg)", opacity: 1 },
-        {
-          transform: `translate(${dx * 0.5}px, ${dy * 0.5 - 40}px) scale(1.12) rotate(${tilt}deg)`,
-          opacity: 1,
-          offset: 0.45,
-        },
-        {
-          transform: `translate(${dx}px, ${dy}px) scale(.3) rotate(0deg)`,
-          opacity: 0.15,
-        },
-      ],
-      { duration: FLY_MS, easing: "cubic-bezier(.45, 0, .55, 1)" },
-    ).finished;
+    await ghost.animate([
+      { transform: "translate(0, 0) scale(1) rotate(0deg)", opacity: 1 },
+      { transform: `translate(${dx * 0.5}px, ${dy * 0.5 - 40}px) scale(1.12) rotate(${tilt}deg)`, opacity: 1, offset: 0.45 },
+      { transform: `translate(${dx}px, ${dy}px) scale(.3) rotate(0deg)`, opacity: 0.15 },
+    ], { duration: FLY_MS, easing: "cubic-bezier(.45, 0, .55, 1)" }).finished;
     ghost.remove();
   }
 
   pulseHero(index) {
-    $(`hero${index}`)
-      .querySelector(".portrait")
-      .animate(
-        [
-          { transform: "scale(1)" },
-          { transform: "scale(1.08)" },
-          { transform: "scale(1)" },
-        ],
-        { duration: 380, easing: "ease-out" },
-      );
+    $(`hero${index}`).querySelector(".portrait").animate(
+      [{ transform: "scale(1)" }, { transform: "scale(1.08)" }, { transform: "scale(1)" }],
+      { duration: 380, easing: "ease-out" });
   }
 
   // ---------- Windows ----------
@@ -297,14 +237,10 @@ export class View {
     if (close) close.onclick = () => this.closeModal();
   }
 
-  closeModal() {
-    $("modal").classList.remove("show");
-  }
+  closeModal() { $("modal").classList.remove("show"); }
 
   showText(title, text) {
-    this.openModal(
-      `<h2>${title}</h2><pre></pre><div class="actions"><button class="btn" data-close>Close</button></div>`,
-    );
+    this.openModal(`<h2>${title}</h2><pre></pre><div class="actions"><button class="btn" data-close>Close</button></div>`);
     $("sheet").querySelector("pre").textContent = text;
   }
 
@@ -316,9 +252,7 @@ export class View {
       <div class="actions"><button class="btn" data-close>Close</button></div>`);
     const gallery = $("sheet").querySelector(".gallery");
     if (!player.pairs.length) gallery.textContent = "No cards yet.";
-    player.pairs.forEach((name) =>
-      gallery.append(picture(tilePath(name), pretty(name), "thumb")),
-    );
+    player.pairs.forEach((name) => gallery.append(picture(tilePath(name), pretty(name), "thumb")));
   }
 
   showResult({ time, moves, isRecord, best, previous }) {
@@ -333,9 +267,7 @@ export class View {
         ${recordLine}
       </div>
       <div class="actions"><button class="btn" id="again">Play again</button></div>`);
-    $("again").onclick = () => {
-      this.closeModal();
-      this.onPlayAgain?.();
-    };
+    $("again").onclick = () => { this.closeModal(); this.onPlayAgain?.(); };
   }
+
 }

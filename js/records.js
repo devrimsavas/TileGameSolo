@@ -8,7 +8,7 @@ export function loadBest() {
     const saved = JSON.parse(localStorage.getItem(KEY));
     return saved && typeof saved.time === "number" ? saved : null;
   } catch {
-    return null; // Storage blocked (private window, settings): play without records
+    return null;   // Storage blocked (private window, settings): play without records
   }
 }
 

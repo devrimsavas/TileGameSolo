@@ -6,7 +6,7 @@ A medieval memory game against the clock. Find all 18 pairs as fast as you can, 
 
 ## The story behind it
 
-In May 1990 I bought my first computer magazine and saw an Amiga game called *Turn It*. In 2023 I wrote my own memory game in Python with Tkinter, with a medieval twist: every card adds attack, defence or happiness to your kingdom. In 2026 I gave that old game a new face and a new platform: it now runs in the browser, with new AI-generated card art.
+In May 1990 I bought my first computer magazine and saw an Amiga game called _Turn It_. In 2023 I wrote my own memory game in Python with Tkinter, with a medieval twist: every card adds attack, defence or happiness to your kingdom. In 2026 I gave that old game a new face and a new platform: it now runs in the browser, with new AI-generated card art.
 
 This repository is the **solo** version: one player, one clock.
 
@@ -23,7 +23,7 @@ This repository is the **solo** version: one player, one clock.
 - 3D card flips and cards flying to the hero, made with CSS transitions and the Web Animations API
 - Timer, move counter and best time (stored with `localStorage`)
 - Adapts to the screen: a 9 × 4 board on desktop, a 6 × 6 board on a phone held upright
-- Sound effects, a scrolling prologue on the intro screen, and rules / kingdom overview windows
+- Sound effects, a title screen, and rules / kingdom overview windows
 - A labelled placeholder appears instead of a broken image if a card picture is missing
 
 ## Tech
@@ -41,7 +41,7 @@ The game logic does not touch the page. `game.js` asks the view (`ui.js`) to fli
 ├── js/
 │   ├── main.js      startup, menu buttons, resize
 │   ├── config.js    settings: asset folders, board size, timings, player
-│   ├── data.js      items, card powers, intro and rules texts
+│   ├── data.js      items, card powers and rules text
 │   ├── game.js      solo game logic: turns, timer, peek power
 │   ├── player.js    the player's kingdom: pairs and stats
 │   ├── records.js   best time, saved in the browser
@@ -59,7 +59,7 @@ The game logic does not touch the page. `game.js` asks the view (`ui.js`) to fli
 
 The game uses ES modules, which browsers do not load from `file://`. Open it through a local web server instead of double-clicking `index.html`:
 
-- **VS Code:** the *Live Server* extension, then "Go Live", or
+- **VS Code:** the _Live Server_ extension, then "Go Live", or
 - **Terminal:** `npx serve` in the project folder (runs without installing anything globally)
 
 ## Configuration
