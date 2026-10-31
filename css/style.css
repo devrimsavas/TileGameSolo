@@ -196,7 +196,7 @@ body.phone .panel {
   margin-top: 8px;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-areas:
-    "hero0  hero1"
+    "hero0  stats1"
     "stats0 stats1"
     "center center";
   gap: 6px 10px;
@@ -204,7 +204,6 @@ body.phone .panel {
   font-size: 13px;
 }
 body.phone #hero0 { grid-area: hero0; }
-body.phone #hero1 { grid-area: hero1; }
 body.phone #stats0 { grid-area: stats0; }
 body.phone #stats1 { grid-area: stats1; }
 body.phone .center { grid-area: center; min-height: 0; }
@@ -220,3 +219,18 @@ body.phone .start { top: 16px; left: 16px; }
 body.phone .sheet { padding: 18px; }
 body.phone .sheet pre { font-size: 15px; }
 body.phone .gallery img, body.phone .gallery .thumb { width: 62px; height: 87px; }
+
+/* ---------- Solo mode: one hero, the right side shows the clock ---------- */
+#hero1 { display: none; }
+.clock {
+  font-family: var(--title); font-weight: 800; font-size: 2em; letter-spacing: .04em;
+  color: var(--gold); font-variant-numeric: tabular-nums;
+}
+.result .record {
+  margin-top: 12px; font-family: var(--title); font-weight: 800; font-size: 24px;
+  color: var(--gold-soft); animation: glow 1.2s ease-in-out infinite alternate;
+}
+.result .muted { color: var(--muted); }
+@keyframes glow { from { text-shadow: 0 0 4px rgba(232, 194, 106, .3); } to { text-shadow: 0 0 18px rgba(232, 194, 106, .9); } }
+body.phone #stats1 { align-self: center; }
+body.phone .clock { font-size: 26px; }

@@ -10,25 +10,70 @@ export const POWER = {
 // name: [attack, defence, happiness, description]
 export const ITEMS = {
   archer: [1, 2, 0, "Archers are weak fighters but\n provide strong defense."],
-  armyflag: [1, 1, 0, "Army flags provide discipline\n and motivation for the army."],
-  axe: [0, 0, 1, "Axes are basic tools for woodcutters and\n have a positive contribution\n to the nation's economy."],
-  assaultpipe: [2, -1, 0, "Assault pipes provide\n a blitz attack but\n decrease defense power."],
-  bagofgold: [0, 0, 3, "The nation has found\n new economic resources,\n and welfare has increased."],
+  armyflag: [
+    1,
+    1,
+    0,
+    "Army flags provide discipline\n and motivation for the army.",
+  ],
+  axe: [
+    0,
+    0,
+    1,
+    "Axes are basic tools for woodcutters and\n have a positive contribution\n to the nation's economy.",
+  ],
+  assaultpipe: [
+    2,
+    -1,
+    0,
+    "Assault pipes provide\n a blitz attack but\n decrease defense power.",
+  ],
+  bagofgold: [
+    0,
+    0,
+    3,
+    "The nation has found\n new economic resources,\n and welfare has increased.",
+  ],
   bard: [0, 0, 2, "Bards entertain people."],
-  beer: [-1, -1, 1, "Beer brings happiness but\n reduces soldiers' attack and defense."],
+  beer: [
+    -1,
+    -1,
+    1,
+    "Beer brings happiness but\n reduces soldiers' attack and defense.",
+  ],
   bible: [0, 0, 2, "Religion increases\n people's morale and happiness."],
   car: [0, 0, 1, "Cars provide better\n transportation for people."],
   cart: [0, 1, 1, "Carts make quick\n weapon and ware transport."],
   castle: [1, 1, 0, "Castles provide better defense."],
-  castlecity: [0, 3, 3, "Castles provide people\n with strong defense, creating happiness."],
+  castlecity: [
+    0,
+    3,
+    3,
+    "Castles provide people\n with strong defense, creating happiness.",
+  ],
   catapult: [4, 0, 0, "Catapults break castle walls."],
   clown: [0, 0, 1, "Clowns provide entertainment."],
   crown: [0, 0, 1, "Crowns provide safety for the folk."],
   deathrow: [0, 0, -1, "Death row represents punishment."],
-  diplomaticletter: [0, 0, 1, "Diplomatic letters promote\n international peace."],
-  doubleaxe: [1, 0, 0, "Double axes indicate that \ncivil people contribute to defense."],
-  doublesword: [2, 0, 0, "Double swords represent skilled swordsmen."],
-  doubleswordshield: [2, 2, 0, "Double swords with\n shields represent a fortified army."],
+  diplomaticletter: [
+    0,
+    0,
+    1,
+    "Diplomatic letters promote\n international peace.",
+  ],
+  doubleaxe: [
+    1,
+    0,
+    0,
+    "Double axes indicate that \ncivil people contribute to defense.",
+  ],
+  doubleswords: [2, 0, 0, "Double swords represent skilled swordsmen."],
+  doubleswordshield: [
+    2,
+    2,
+    0,
+    "Double swords with\n shields represent a fortified army.",
+  ],
   elitearcher: [2, 2, 0, "Elite archers are upgraded archers."],
   elixir: [0, 0, 1, "Elixirs provide \nhealth services for people."],
   executioner: [0, 0, -1, "Executioners demoralize people."],
@@ -36,19 +81,49 @@ export const ITEMS = {
   fullknight: [2, 2, 0, "Full knights are upgraded knights."],
   heavyshield: [0, 2, 0, "Heavy shields provide\n special armor protection."],
   helmet: [0, 1, 0, "Helmets provide \nbasic protection for soldiers."],
-  helmetsword: [1, 1, 0, "Helmets and swords\n fulfill the basic needs of soldiers."],
+  helmetsword: [
+    1,
+    1,
+    0,
+    "Helmets and swords\n fulfill the basic needs of soldiers.",
+  ],
   horse: [1, 0, 1, "Horses can be used \nfor transport and attack."],
-  irondoor: [0, 1, 1, "Iron doors increase\n city defense and people's safety."],
-  jousting: [1, 0, 1, "Jousting provides \nentertainment for people \nand trains soldiers."],
+  irondoor: [
+    0,
+    1,
+    1,
+    "Iron doors increase\n city defense and people's safety.",
+  ],
+  jousting: [
+    1,
+    0,
+    1,
+    "Jousting provides \nentertainment for people \nand trains soldiers.",
+  ],
   kingdomflag: [0, 0, 1, "Kingdom flags represent\n prestige for the country."],
   kingorder: [0, 0, -1, "King orders restrict\n some citizen rights."],
   legion: [1, 1, 0, "Legions are balanced\n military powers."],
   lightknight: [1, 0, 0, "Light knights are not\n suitable for defense."],
   lock: [0, 0, 1, "Locks ensure safety \nfor the nation's treasury."],
   monk: [0, 0, 1, "Monks provide moral support \nfor people through religion."],
-  morningstar: [3, -1, 0, "Morning stars are heavy weapons\n that decrease defense power."],
-  nationflag: [0, 0, 2, "People live in united states \nunder the nation's flag."],
-  oldking: [0, 1, 1, "Old kings are wise, \nand people are happy to have\n a wise king who prioritizes defense."],
+  morningstar: [
+    3,
+    -1,
+    0,
+    "Morning stars are heavy weapons\n that decrease defense power.",
+  ],
+  nationflag: [
+    0,
+    0,
+    2,
+    "People live in united states \nunder the nation's flag.",
+  ],
+  oldking: [
+    0,
+    1,
+    1,
+    "Old kings are wise, \nand people are happy to have\n a wise king who prioritizes defense.",
+  ],
   ovalshield: [0, 1, 0, "Oval shields are ordinary metal shields."],
   peaceorder: [0, 0, 2, "Peace orders protect people's citizen rights."],
   princess: [0, 0, 1, "Young princesses give people new hope."],
@@ -56,17 +131,52 @@ export const ITEMS = {
   royalcoat: [0, 0, 0, "Royal coats have no special value."],
   ship: [1, 0, 1, "Ships provide better attack and transport capabilities."],
   soldiergrave: [0, -1, -1, "Soldier graves represent the death of soldiers."],
-  swordaxe: [-1, -1, -1, "Sword axes represent \ncivil conflict between soldiers and folk."],
-  throne: [-1, -1, -1, "The absence of a king \nleads to anarchy in the kingdom."],
+  swordaxe: [
+    -1,
+    -1,
+    -1,
+    "Sword axes represent \ncivil conflict between soldiers and folk.",
+  ],
+  throne: [
+    -1,
+    -1,
+    -1,
+    "The absence of a king \nleads to anarchy in the kingdom.",
+  ],
   torch: [1, 1, 1, "Torches symbolize \nthe age of science and enlightenment."],
-  treasure: [0, 0, 3, "The kingdom has discovered \nnew resources, leading to prosperity."],
-  treasurekey: [0, 0, 1, "Treasure keys provide \nsafety for the kingdom's treasury."],
-  wardragon: [5, 0, -3, "War dragons are deadly weapons,\n but people must provide significant resources for them."],
+  treasure: [
+    0,
+    0,
+    3,
+    "The kingdom has discovered \nnew resources, leading to prosperity.",
+  ],
+  treasurekey: [
+    0,
+    0,
+    1,
+    "Treasure keys provide \nsafety for the kingdom's treasury.",
+  ],
+  wardragon: [
+    5,
+    0,
+    -3,
+    "War dragons are deadly weapons,\n but people must provide significant resources for them.",
+  ],
   warehouse: [0, 0, 2, "Warehouses protect grains and food supplies."],
   watersupply: [0, 0, 3, "Clean water resources provide a healthy population."],
   windmill: [0, 0, 3, "Windmills produce flour from grains."],
-  winecup: [-1, -1, 1, "Taverns are good for entertainment,\n but soldiers tend to drink and become less effective."],
-  youngking: [1, 0, 0, "Young kings are eager to capture\n new places, but people are skeptical."],
+  winecup: [
+    -1,
+    -1,
+    1,
+    "Taverns are good for entertainment,\n but soldiers tend to drink and become less effective.",
+  ],
+  youngking: [
+    1,
+    0,
+    0,
+    "Young kings are eager to capture\n new places, but people are skeptical.",
+  ],
 };
 
 // Special powers that trigger when a pair is taken
@@ -85,7 +195,7 @@ export const POWERS = {
 
 export const POWER_TEXTS = {
   [POWER.EXTRA_TURN]: "Power: play again!",
-  [POWER.PEEK]: "Power: four hidden cards are revealed. Play again!",
+  [POWER.PEEK]: "Power: four hidden cards are revealed for a moment!",
   [POWER.STEAL]: "Power: you capture your enemy's last pair!",
   [POWER.SHUFFLE]: "Power: anarchy! All hidden cards are shuffled.",
 };
@@ -144,22 +254,17 @@ and rule your kingdom. Choose wisely and balance your decisions for prosperity a
 Each item comes with unique properties, affecting your nation in Attack Power, Defense Power,
 and the Happiness of your people.
 
-HOW TO WIN
+HOW TO PLAY
 
-1. Find pairs. Every pair adds its Attack, Defence and Happiness to your kingdom.
+1. Find all the pairs as fast as you can. The clock starts when you turn over your first card
+   and stops when the last pair is found.
 
-2. Mind your people. If a pair would push your Happiness below zero, your people revolt:
-   the pair is lost and your turn ends. Gather happy cards before you reach for a War Dragon!
+2. Every pair you find adds its Attack, Defence and Happiness to your kingdom.
 
-3. Use special powers:
-   Diplomatic Letter, Horse, Ship, Jousting: play again.
-   Torch, Old King: four hidden cards are revealed for a moment, then play again.
-   Young King, Catapult: capture your enemy's last pair.
-   Throne, Sword Axe: anarchy! All hidden cards are shuffled.
+3. Torch and Old King have a special power: four hidden cards are revealed for a moment.
+   Remember them well!
 
-4. The final battle. When all cards are gone, each kingdom earns Victory Points:
-   pairs + happiness + 2 x (your attack minus the enemy's defence, if positive).
-   The kingdom with the most Victory Points wins.
+4. Your best time is saved on this device. Beat it to set a new record.
 
 THE ITEMS
 
