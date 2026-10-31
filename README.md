@@ -77,4 +77,4 @@ It is a static site. On Render, create a **Static Site** from this repository, l
 - Program: Devrim Savas Yilmaz
 - Original design and graphics (2023 Python version): Devrim Savas Yilmaz & Malin Nilsen
 - Card, hero and background art in this version: generated with AI (Gemini)
-- The move from Python to JavaScript was done with the help of AI coding tools
+
