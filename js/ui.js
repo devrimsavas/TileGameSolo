@@ -41,6 +41,25 @@ const screenWidth = () => Math.min(innerWidth, screen.width);
 /** True on a narrow screen held upright. */
 const isPhone = () => screenWidth() < 760 && innerHeight > screenWidth();
 
+// The sound choice is remembered in this browser
+const SOUND_KEY = "veni-vidi-memory-sound";
+
+function loadSoundSetting() {
+  try {
+    return localStorage.getItem(SOUND_KEY) !== "off";
+  } catch {
+    return true;
+  }
+}
+
+function saveSoundSetting(on) {
+  try {
+    localStorage.setItem(SOUND_KEY, on ? "on" : "off");
+  } catch {
+    // Storage blocked: the choice just won't be remembered
+  }
+}
+
 /** Pick the layout and a card size so the whole table fits the window. */
 export function fitToWindow() {
   const phone = isPhone();
@@ -74,9 +93,24 @@ export class View {
 
     $("modal").addEventListener("click", (event) => { if (event.target.id === "modal") this.closeModal(); });
     document.addEventListener("keydown", (event) => { if (event.key === "Escape") this.closeModal(); });
+
+    this.soundOn = loadSoundSetting();
+    this.updateSoundButton();
   }
 
-  playSound(name) { this.sounds[name]?.play(); }
+  playSound(name) {
+    if (this.soundOn) this.sounds[name]?.play();
+  }
+
+  toggleSound() {
+    this.soundOn = !this.soundOn;
+    saveSoundSetting(this.soundOn);
+    this.updateSoundButton();
+  }
+
+  updateSoundButton() {
+    $("btnSound").textContent = this.soundOn ? "Sound: On" : "Sound: Off";
+  }
 
   // ---------- Intro ----------
 

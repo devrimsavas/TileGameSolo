@@ -8,12 +8,18 @@ const view = new View();
 const game = new Game(view);
 view.onPlayAgain = () => game.start();
 
-document.getElementById("btnNew").onclick = () => { view.closeModal(); game.start(); };
-document.getElementById("btnRules").onclick = () => view.showText("Game Rules", RULES_TEXT);
-document.getElementById("btnAbout").onclick = () => view.showText("About", ABOUT_TEXT);
+document.getElementById("btnNew").onclick = () => {
+  view.closeModal();
+  game.start();
+};
+document.getElementById("btnRules").onclick = () =>
+  view.showText("Game Rules", RULES_TEXT);
+document.getElementById("btnAbout").onclick = () =>
+  view.showText("About", ABOUT_TEXT);
+document.getElementById("btnSound").onclick = () => view.toggleSound();
 
 addEventListener("resize", fitToWindow);
-addEventListener("load", fitToWindow);   // Phones may report their final size only after loading
+addEventListener("load", fitToWindow); // Phones may report their final size only after loading
 fitToWindow();
 view.showIntro();
 game.start();
